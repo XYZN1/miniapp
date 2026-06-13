@@ -1,6 +1,7 @@
 <view class="container">
   <view class="room-header">
-    <text class="room-code">房间号：{{roomId}}</text>
+    <text class="room-code" bindtap="onCopyRoomId">房间号：{{roomId}}</text>
+    <text class="copy-hint">点我复制</text>
     <text class="player-count">{{players.length}}/{{maxPlayers}} 人</text>
   </view>
   <view class="player-list">

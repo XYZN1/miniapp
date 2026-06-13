@@ -18,4 +18,5 @@ Page({
   onToggleReady() { ws.send("PLAYER_READY"); },
   onStartGame() { ws.send("START_GAME"); },
   onLeaveRoom() { ws.send("LEAVE_ROOM"); wx.navigateBack(); },
+  onCopyRoomId() { wx.setClipboardData({ data: this.data.roomId }); wx.showToast({ title: "已复制", icon: "success" }); },
 });

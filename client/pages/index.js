@@ -2,7 +2,7 @@ var ws = require("../utils/ws");
 var app = getApp();
 Page({
   data: { roomId: "", roomIdInput: false },
-  onLoad() { ws.connect("ws://127.0.0.1:3000"); },
+  onLoad() { ws.connect("ws://192.168.124.3:3000"); },
   onRoomIdInput(e) {
     var val = e.detail.value.toUpperCase();
     this.setData({ roomId: val, roomIdInput: val.length > 0 });
