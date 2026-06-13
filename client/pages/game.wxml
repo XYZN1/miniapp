@@ -1,41 +1,67 @@
 <view class="game-container">
-  <view class="opponents-area">
-    <player-seat
-      wx:for="{{opponents}}" wx:key="id"
-      nickname="{{item.nickname}}"
-      lives="{{item.lives}}"
-      cardCount="{{item.handCardCount}}"
-      isActive="{{item.id === currentPlayerId}}"
-      isAlive="{{item.isAlive}}"
-    />
-  </view>
-
-  <view class="table-center">
+  <!-- 顶部信息栏 -->
+  <view class="top-bar">
+    <text class="round-info">第 {{roundNumber}} 轮</text>
     <view class="target-rank">
-      <text class="rank-label">当前点数</text>
-      <text class="rank-value">{{targetRank}}</text>
+      <text class="target-label">目标点数</text>
+      <text class="target-value">{{targetRank}}</text>
     </view>
-    <view class="pile-info">桌面牌堆：{{centralPileCount}} 张</view>
-    <view class="round-info">第 {{roundNumber}} 轮</view>
+    <text class="pile-info">牌堆 {{centralPileCount}} 张</text>
   </view>
 
-  <view class="hand-area">
-    <view class="hand-cards">
-      <view class="card-wrapper {{item.selected ? 'selected' : ''}}"
-        wx:for="{{handCards}}" wx:key="id"
-        bindtap="onSelectCard" data-id="{{item.id}}">
-        <card cardId="{{item.id}}" faceUp="{{true}}" />
+  <!-- 桌面中央 -->
+  <view class="table-area">
+    <view class="table-felt">
+      <view class="opponents-row">
+        <player-seat
+          wx:for="{{opponents}}" wx:key="id"
+          nickname="{{item.nickname}}"
+          lives="{{item.lives}}"
+          cardCount="{{item.handCardCount}}"
+          isActive="{{item.id === currentPlayerId}}"
+          isAlive="{{item.isAlive}}"
+        ></player-seat>
+      </view>
+      <view class="table-center">
+        <text class="center-icon">🃏</text>
+        <text class="center-label">{{centralPileCount > 0 ? '已出 ' + centralPileCount + ' 张' : '等待出牌'}}</text>
       </view>
     </view>
   </view>
 
+  <!-- 手牌区域 -->
+  <view class="hand-area">
+    <view class="hand-cards {{isMyTurn ? 'active' : ''}}">
+      <view
+        class="card-slot {{item.selected ? 'selected' : ''}}"
+        wx:for="{{handCards}}" wx:key="id"
+        bindtap="onSelectCard" data-id="{{item.id}}"
+      >
+        <card cardId="{{item.id}}" faceUp="{{true}}"></card>
+      </view>
+    </view>
+    <view class="hand-tip" wx:if="{{!handCards.length}}">等待发牌...</view>
+  </view>
+
+  <!-- 操作面板 -->
   <action-panel
     isMyTurn="{{isMyTurn}}"
     gamePhase="{{gamePhase}}"
     selectedCards="{{selectedCards}}"
+    currentPlayerName="{{currentPlayerName}}"
     bind:playcards="onPlayCards"
     bind:challenge="onChallenge"
     bind:follow="onFollow"
     bind:pass="onPass"
-  />
+  ></action-panel>
+
+  <!-- 回合结果浮层 -->
+  <view class="result-overlay {{showResult ? 'show' : ''}}" wx:if="{{showResult}}">
+    <view class="result-card">
+      <text class="result-icon">{{resultIcon}}</text>
+      <text class="result-title">{{resultTitle}}</text>
+      <text class="result-desc">{{resultDesc}}</text>
+      <button class="btn-primary" bindtap="onDismissResult">知道了</button>
+    </view>
+  </view>
 </view>

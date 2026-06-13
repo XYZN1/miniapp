@@ -1,16 +1,26 @@
 <view class="panel {{show ? 'show' : ''}}">
   <view class="phase-indicator"><text class="phase-text">{{phaseText}}</text></view>
+
   <view class="actions-row" wx:if="{{isMyTurn}}">
     <block wx:if="{{gamePhase === 'play'}}">
-      <button class="action-btn play" bindtap="onPlay">出牌</button>
+      <view class="play-hint" wx:if="{{selectedCards.length > 0}}">
+        <text>已选 {{selectedCards.length}} 张</text>
+      </view>
+      <button class="action-btn play" bindtap="onPlay" disabled="{{selectedCards.length < 1}}">
+        出牌{{selectedCards.length > 0 ? ' (' + selectedCards.length + ')' : ''}}
+      </button>
     </block>
     <block wx:if="{{gamePhase === 'challenge'}}">
       <button class="action-btn challenge" bindtap="onChallenge">质疑</button>
-      <button class="action-btn follow" bindtap="onFollow" disabled="{{!canFollow}}">跟牌</button>
+      <button class="action-btn follow {{canFollow ? '' : 'disabled'}}" bindtap="onFollow" disabled="{{!canFollow}}">
+        跟牌{{selectedCards.length > 0 ? ' (' + selectedCards.length + ')' : ''}}
+      </button>
       <button class="action-btn pass" bindtap="onPass">过</button>
     </block>
   </view>
+
   <view class="waiting" wx:else>
-    <text>等待 {{currentPlayerName}} 操作...</text>
+    <view class="waiting-spinner"></view>
+    <text>等待 {{currentPlayerName || '对手'}} 操作</text>
   </view>
 </view>
