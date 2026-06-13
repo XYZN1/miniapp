@@ -322,14 +322,7 @@ pm2 save
 
 ### Docker 部署（计划）
 
-```dockerfile
-FROM node:20-alpine
-WORKDIR /app
-COPY server/ .
-RUN npm install --production
-EXPOSE 3000
-CMD ["node", "src/index.js"]
-```
+
 
 ### 微信小程序发布
 
@@ -373,7 +366,6 @@ CMD ["node", "src/index.js"]
 
 ### v2.0 — 扩展
 
-- [ ] 变体规则（特殊牌、多人同时出牌模式）
 - [ ] 牌桌皮肤系统
 - [ ] 自定义房间规则
 - [ ] 观战模式
@@ -393,17 +385,10 @@ CMD ["node", "src/index.js"]
 ### 开发工具
 
 - **微信开发者工具** — 小程序调试与预览
-- **Visual Studio Code** — 代码编辑器
 - **Git** — 版本控制
 - **Node.js** & **npm** — JavaScript 运行时与包管理
 
-### 参考项目
 
-- 《谁是卧底》— 社交推理的小程序产品形态参考
-- 《Cheat / I Doubt It》桌面游戏 — 核心规则原型
-- 《炸金花》微信小程序 — 卡牌交互范式参考
-
----
 
 ## 许可证
 
@@ -428,4 +413,3 @@ copies or substantial portions of the Software.
 ---
 
 > **项目状态**：v0.5 开发中 · 最后更新：2026-06-13
-> 详细进度请见 [requirements.md](requirements.md)
