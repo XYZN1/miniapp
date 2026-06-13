@@ -59,6 +59,15 @@ class Room {
 
   handleAction(cid, act, pay) {
     if (!this.game) return;
+    // Remove played cards from hand
+    if ((act === "playCards" || act === "follow") && pay && pay.cardIds) {
+      var p = this.players.find(function(pl) { return pl.id === cid; });
+      if (p && p.handCards) {
+        p.handCards = p.handCards.filter(function(c) {
+          return pay.cardIds.indexOf(typeof c === "string" ? c : c.id) < 0;
+        });
+      }
+    }
     const r = this.game.handleAction(cid, act, pay);
     if (r.type === "ROUND_RESULT") {
       const loser = this.players.find((p) => p.id === r.loserId);

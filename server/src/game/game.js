@@ -103,7 +103,14 @@ class Game {
     };
   }
 
-  static createDeck(n) { return deal(createDeck(), n); }
+  static createDeck(n) {
+    var fullDeck = createDeck();
+    var shuffled = shuffle(fullDeck);
+    var total = Math.min(5 * n, shuffled.length);
+    var hands = Array.from({ length: n }, function() { return []; });
+    for (var i = 0; i < total; i++) hands[i % n].push(shuffled[i]);
+    return hands;
+  }
 }
 
 module.exports = Game;
