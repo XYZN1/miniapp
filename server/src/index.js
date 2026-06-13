@@ -22,9 +22,14 @@ wss.on("connection", (ws, req) => {
   console.log("[connect]", cid);
   ws.on("message", (raw) => {
     try {
-      wsHandler.handle(ws, JSON.parse(raw.toString()));
+      // Handle both string and Buffer
+      var str = typeof raw === "string" ? raw : Buffer.isBuffer(raw) ? raw.toString("utf-8") : String(raw);
+      var msg = JSON.parse(str);
+      wsHandler.handle(ws, msg);
     } catch (e) {
-      ws.send(JSON.stringify({ type: "ERROR", payload: { message: "消息格式错误" } }));
+      var preview = typeof raw === "string" ? raw.substring(0, 100) : String(raw).substring(0, 100);
+      console.error("[ws] parse error:", e.message, "| raw:", preview);
+      ws.send(JSON.stringify({ type: "ERROR", payload: { message: "消息格式错误: " + preview } }));
     }
   });
   ws.on("close", () => {
