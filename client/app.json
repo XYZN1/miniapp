@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/room/room",
-    "pages/game/game",
-    "pages/result/result",
-    "pages/rules/rules"
+    "pages/index",
+    "pages/room",
+    "pages/game",
+    "pages/result",
+    "pages/rules"
   ],
   "window": {
     "navigationBarTitleText": "骗子酒馆",

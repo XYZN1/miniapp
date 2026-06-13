@@ -1,6 +1,6 @@
 <view class="container">
   <view class="logo-section">
-    <text class="logo-icon">🃏</text>
+    <text class="logo-icon">\uD83C\uDCCF</text>
     <text class="title">骗子酒馆</text>
     <text class="subtitle">虚张声势 · 真假难辨</text>
   </view>

@@ -1,0 +1,16 @@
+.container { padding: 40rpx; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+.winner-section { text-align: center; margin: 60rpx 0; }
+.trophy { font-size: 120rpx; display: block; margin-bottom: 20rpx; }
+.winner-title { font-size: 28rpx; color: #8b7355; display: block; }
+.winner-name { font-size: 48rpx; font-weight: bold; color: #c9a84c; display: block; margin-top: 12rpx; }
+.player-stats { width: 100%; flex: 1; }
+.stat-item {
+  display: flex; align-items: center; padding: 20rpx;
+  background: rgba(255,255,255,0.05); border-radius: 12rpx; margin-bottom: 16rpx;
+}
+.stat-name { flex: 1; font-size: 32rpx; }
+.stat-lives { font-size: 24rpx; color: #8b7355; margin-right: 16rpx; }
+.stat-status { font-size: 24rpx; padding: 4rpx 16rpx; border-radius: 8rpx; }
+.stat-status.alive { color: #27ae60; background: rgba(39,174,96,0.15); }
+.stat-status.dead { color: #c0392b; background: rgba(192,57,43,0.15); }
+.actions { width: 100%; display: flex; flex-direction: column; gap: 20rpx; margin-top: 40rpx; }

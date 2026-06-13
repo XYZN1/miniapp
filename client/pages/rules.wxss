@@ -1,0 +1,4 @@
+.container { padding: 30rpx; }
+.section { margin-bottom: 40rpx; padding: 24rpx; background: rgba(255,255,255,0.05); border-radius: 16rpx; }
+.section-title { font-size: 32rpx; font-weight: bold; color: #c9a84c; display: block; margin-bottom: 16rpx; }
+.section-body { font-size: 28rpx; color: #d4c5a9; line-height: 1.8; white-space: pre-line; display: block; }
