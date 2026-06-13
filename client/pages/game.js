@@ -9,27 +9,16 @@ Page({
     showResult: false, resultIcon: "", resultTitle: "", resultDesc: "",
   },
 
-  onWsMessage(msg) {
-    if (msg.type === "GAME_STATE") {
-      var p = msg.payload;
-      var me = p.players.find(function(pl) { return pl.id === app.globalData.clientId; });
-      var opponents = p.players.filter(function(pl) { return pl.id !== app.globalData.clientId; });
-      var currentPlayer = p.players.find(function(pl) { return pl.id === p.currentPlayerId; });
-
-      this.setData({
-        targetRank: p.targetRank, currentPlayerId: p.currentPlayerId,
-        centralPileCount: p.centralPileCount, roundNumber: (p.roundNumber || 0) + 1,
-        handCards: (me ? me.handCards || [] : []).map(function(c) {
-          return typeof c === "string" ? { id: c, selected: false } : { id: c.id, suit: c.suit, rank: c.rank, selected: false };
-        }),
-        opponents: opponents,
-        isMyTurn: p.currentPlayerId === app.globalData.clientId,
-        gamePhase: this._phase(p),
-        currentPlayerName: currentPlayer ? currentPlayer.nickname : "",
-        selectedCards: [],
-        showResult: false,
-      });
+  onLoad: function() {
+    var saved = app.globalData.currentGameState;
+    if (saved) {
+      app.globalData.currentGameState = null;
+      this._processGameState(saved);
     }
+  },
+
+  onWsMessage: function(msg) {
+    if (msg.type === "GAME_STATE") { this._processGameState(msg); return; }
 
     if (msg.type === "ROUND_RESULT") {
       var r = msg.payload;
@@ -51,6 +40,27 @@ Page({
         url: "/pages/result?winner=" + encodeURIComponent(w ? w.nickname : "") + "&players=" + encodeURIComponent(JSON.stringify(p.players)),
       });
     }
+  },
+
+  _processGameState: function(msg) {
+    var p = msg.payload;
+    var me = p.players.find(function(pl) { return pl.id === app.globalData.clientId; });
+    var opponents = p.players.filter(function(pl) { return pl.id !== app.globalData.clientId; });
+    var currentPlayer = p.players.find(function(pl) { return pl.id === p.currentPlayerId; });
+
+    this.setData({
+      targetRank: p.targetRank, currentPlayerId: p.currentPlayerId,
+      centralPileCount: p.centralPileCount, roundNumber: (p.roundNumber || 0) + 1,
+      handCards: (me ? me.handCards || [] : []).map(function(c) {
+        return typeof c === "string" ? { id: c, selected: false } : { id: c.id, suit: c.suit, rank: c.rank, selected: false };
+      }),
+      opponents: opponents,
+      isMyTurn: p.currentPlayerId === app.globalData.clientId,
+      gamePhase: this._phase(p),
+      currentPlayerName: currentPlayer ? currentPlayer.nickname : "",
+      selectedCards: [],
+      showResult: false,
+    });
   },
 
   _phase: function(state) {

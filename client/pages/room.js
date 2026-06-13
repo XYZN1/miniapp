@@ -12,7 +12,7 @@ Page({
         allReady: p.players.length >= 2 && p.players.every(function(pl) { return pl.isReady; }),
       });
     }
-    if (msg.type === "GAME_STATE") wx.redirectTo({ url: "/pages/game" });
+    if (msg.type === "GAME_STATE") { app.globalData.currentGameState = msg; wx.redirectTo({ url: "/pages/game" }); }
     if (msg.type === "ERROR") wx.showToast({ title: msg.payload.message, icon: "none" });
   },
   onToggleReady() { ws.send("PLAYER_READY"); },
