@@ -14,7 +14,7 @@ class Room {
 
   addPlayer(cid) {
     if (this.players.length >= this.maxPlayers) return false;
-    this.players.push({ id: cid, nickname: "玩家" + (this.players.length + 1), lives: 5, isReady: false, isAlive: true });
+    this.players.push({ id: cid, nickname: "玩家" + (this.players.length + 1), lives: 3, isReady: false, isAlive: true });
     return true;
   }
 

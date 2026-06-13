@@ -5,8 +5,8 @@ class Game {
     this.playerIds = pids;
     this.targetRank = "A";
     this.currentPlayerIndex = 0;
-    this.centralPile = [];
-    this.roundHistory = [];
+    this.centralPile = [];    // flat card IDs for pile count
+    this.roundHistory = []; // [{playerId, cardIds}] for per-player tracking
     this.passCount = 0;
     this.roundNumber = 0;
     this.claimCount = 0;
@@ -28,6 +28,7 @@ class Game {
   handlePlayCards(cid, { cardIds }) {
     if (!cardIds || cardIds.length < 1 || cardIds.length > 4) return { type: "ERROR", message: "每次出牌 1-4 张" };
     this.centralPile.push(...cardIds);
+    this.roundHistory.push({ playerId: cid, cardIds: cardIds.slice() });
     this.claimCount += 1;
     this.passCount = 0;
     this.advanceTurn();
@@ -36,16 +37,21 @@ class Game {
 
   handleChallenge(cid) {
     if (this.claimCount === 0) return { type: "ERROR", message: "还没有人出牌" };
-    const prevIdx = (this.currentPlayerIndex - 1 + this.playerIds.length) % this.playerIds.length;
-    const isBluff = this.centralPile.some((cardId) => cardId.replace(/[SHDC]/, "") !== this.targetRank);
-    const bid = this.playerIds[prevIdx];
-    if (isBluff) return { type: "ROUND_RESULT", loserId: bid, challengerId: cid, reason: "bluff_caught" };
-    return { type: "ROUND_RESULT", loserId: cid, blufferId: bid, reason: "bluff_failed" };
+    // Only check the LAST player who played cards
+    var lastEntry = this.roundHistory[this.roundHistory.length - 1];
+    if (!lastEntry) return { type: "ERROR", message: "没有出牌记录" };
+    var lastPlayerId = lastEntry.playerId;
+    var isBluff = lastEntry.cardIds.some(function(cardId) {
+      return cardId.replace(/[SHDC]/, "") !== this.targetRank;
+    }, this);
+    if (isBluff) return { type: "ROUND_RESULT", loserId: lastPlayerId, challengerId: cid, reason: "bluff_caught" };
+    return { type: "ROUND_RESULT", loserId: cid, blufferId: lastPlayerId, reason: "bluff_failed" };
   }
 
   handleFollow(cid, { cardIds }) {
     if (!cardIds || cardIds.length < 1 || cardIds.length > 4) return { type: "ERROR", message: "每次跟牌 1-4 张" };
     this.centralPile.push(...cardIds);
+    this.roundHistory.push({ playerId: cid, cardIds: cardIds.slice() });
     this.passCount = 0;
     this.advanceTurn();
     return { type: "OK" };
