@@ -27,8 +27,12 @@ wss.on("connection", (ws, req) => {
       var msg = JSON.parse(str);
       wsHandler.handle(ws, msg);
     } catch (e) {
-      var preview = typeof raw === "string" ? raw.substring(0, 100) : String(raw).substring(0, 100);
-      console.error("[ws] parse error:", e.message, "| raw:", preview);
+      var preview = "";
+      if (typeof raw === "string") { preview = raw.substring(0, 200); }
+      else if (Buffer.isBuffer(raw)) { preview = "HEX:" + raw.toString("hex").substring(0, 400) + "|STR:" + raw.toString("utf-8").substring(0, 100); }
+      else { preview = String(raw).substring(0, 200); }
+      console.error("[ws] parse error:", e.message);
+      console.error("[ws] raw data:", preview);
       ws.send(JSON.stringify({ type: "ERROR", payload: { message: "消息格式错误: " + preview } }));
     }
   });
