@@ -1,7 +1,10 @@
 <view class="game-container">
   <!-- 顶部信息栏 -->
   <view class="top-bar">
-    <text class="round-info">第 {{roundNumber}} 轮</text>
+    <view class="top-left">
+      <text class="round-info">第 {{roundNumber}} 轮</text>
+      <countdown seconds="{{countdownSeconds}}" running="{{countdownRunning}}" bind:timeout="onTimeout"></countdown>
+    </view>
     <view class="target-rank">
       <text class="target-label">目标点数</text>
       <text class="target-value">{{targetRank}}</text>

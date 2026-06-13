@@ -7,6 +7,7 @@ Page({
     handCards: [], opponents: [], selectedCards: [], isMyTurn: false,
     gamePhase: "waiting", currentPlayerName: "",
     showResult: false, resultIcon: "", resultTitle: "", resultDesc: "",
+    countdownSeconds: 15, countdownRunning: false,
   },
 
   onLoad: function() {
@@ -42,7 +43,23 @@ Page({
     }
   },
 
-  _processGameState: function(msg) {
+  _startTimer: function() {
+    this.setData({ countdownSeconds: 15, countdownRunning: true });
+  },
+
+  _stopTimer: function() {
+    this.setData({ countdownRunning: false });
+  },
+
+  onTimeout: function() {
+    this.setData({ countdownRunning: false });
+    if (this.data.isMyTurn) {
+      wx.showToast({ title: "时间到，自动过", icon: "none" });
+      ws.send("PASS");
+    }
+  },
+
+    _processGameState: function(msg) {
     var p = msg.payload;
     var me = p.players.find(function(pl) { return pl.id === app.globalData.clientId; });
     var opponents = p.players.filter(function(pl) { return pl.id !== app.globalData.clientId; });
@@ -56,6 +73,7 @@ Page({
       }),
       opponents: opponents,
       isMyTurn: p.currentPlayerId === app.globalData.clientId,
+      countdownRunning: p.currentPlayerId === app.globalData.clientId && !this.data.showResult,
       gamePhase: this._phase(p),
       currentPlayerName: currentPlayer ? currentPlayer.nickname : "",
       selectedCards: [],
