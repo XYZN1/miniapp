@@ -22,16 +22,7 @@ Page({
   },
 
   onWsMessage: function(msg) {
-  onWsMessage(msg) {
-    if (msg.type === "ROOM_UPDATE") {
-      var p = msg.payload;
-      this.setData({
-        roomId: p.roomId, maxPlayers: p.maxPlayers, players: p.players, hostId: p.hostId,
-        isHost: p.hostId === app.globalData.clientId,
-        isReady: (p.players.find(function(pl) { return pl.id === app.globalData.clientId; }) || {}).isReady || false,
-        allReady: p.players.length >= 2 && p.players.every(function(pl) { return pl.isReady; }),
-      });
-    }
+    if (msg.type === "ROOM_UPDATE") { this._processRoomUpdate(msg); }
     if (msg.type === "GAME_STATE") { app.globalData.currentGameState = msg; wx.redirectTo({ url: "/pages/game" }); }
     if (msg.type === "ERROR") wx.showToast({ title: msg.payload.message, icon: "none" });
   },
