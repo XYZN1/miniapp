@@ -69,7 +69,7 @@ class Game {
     this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.playerIds.length;
   }
 
-  advanceRound(players) {
+  advanceRound(players, nextPlayerId) {
     this.roundNumber += 1;
     this.centralPile = [];
     this.roundHistory = [];
@@ -78,6 +78,9 @@ class Game {
     const order = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
     const idx = order.indexOf(this.targetRank);
     this.targetRank = order[(idx + 1) % order.length];
+    if (nextPlayerId) {
+      this.currentPlayerIndex = this.playerIds.indexOf(nextPlayerId);
+    }
   }
 
   toClientState(ps) {

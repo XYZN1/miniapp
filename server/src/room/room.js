@@ -74,7 +74,18 @@ class Room {
         return;
       }
       this.broadcast({ type: "ROUND_RESULT", payload: r });
-      this.game.advanceRound(this.players);
+
+        // Determine next starting player
+        var nextPlayerId = null;
+        var affectedId = r.loserId || r.winnerId;
+        if (affectedId) {
+          var idx = this.players.findIndex(function(p) { return p.id === affectedId; });
+          for (var i = 1; i <= this.players.length; i++) {
+            var p = this.players[(idx + i) % this.players.length];
+            if (p.isAlive) { nextPlayerId = p.id; break; }
+          }
+        }
+        this.game.advanceRound(this.players, nextPlayerId);
     }
     this.broadcastGameState();
   }

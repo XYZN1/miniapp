@@ -1,16 +1,24 @@
-﻿{
-  "description": "骗子酒馆 - 微信小程序",
-  "packOptions": { "ignore": [] },
+{
   "setting": {
-    "urlCheck": true,
     "es6": true,
     "postcss": true,
-    "preloadBackgroundData": false,
-    "minified": true
+    "minified": true,
+    "uglifyFileName": false,
+    "enhance": true,
+    "packNpmRelationList": [],
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useCompilerPlugins": false
   },
   "compileType": "miniprogram",
-  "libVersion": "3.3.4",
-  "appid": "YOUR_APP_ID",
-  "projectname": "liars-bar",
-  "condition": {}
+  "simulatorPluginLibVersion": {},
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "appid": "wx334a43905bc66058",
+  "editorSetting": {}
 }
