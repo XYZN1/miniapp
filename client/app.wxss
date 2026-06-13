@@ -1,0 +1,37 @@
+﻿/* 全局样式 - 西部酒馆主题 */
+page {
+  background-color: #1a0e0a;
+  color: #e8d5b7;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  height: 100%;
+  overflow: hidden;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #c9a84c, #a67c2e);
+  color: #2c1810;
+  border: none;
+  border-radius: 12rpx;
+  padding: 24rpx 48rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+}
+.btn-danger {
+  background: linear-gradient(135deg, #c0392b, #96281b);
+  color: #fff;
+  border: none;
+  border-radius: 12rpx;
+  padding: 24rpx 48rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+}
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e8d5b7;
+  border: 2rpx solid #c9a84c;
+  border-radius: 12rpx;
+  padding: 24rpx 48rpx;
+  font-size: 32rpx;
+  text-align: center;
+}

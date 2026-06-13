@@ -1,0 +1,18 @@
+﻿<view class="container">
+  <view class="winner-section">
+    <text class="trophy">🏆</text>
+    <text class="winner-title">本局胜者</text>
+    <text class="winner-name">{{winner}}</text>
+  </view>
+  <view class="player-stats">
+    <view class="stat-item" wx:for="{{players}}" wx:key="id">
+      <text class="stat-name">{{item.nickname}}</text>
+      <text class="stat-lives">剩余命数：{{item.lives}}</text>
+      <text class="stat-status {{item.isAlive ? 'alive' : 'dead'}}">{{item.isAlive ? '存活' : '淘汰'}}</text>
+    </view>
+  </view>
+  <view class="actions">
+    <button class="btn-primary" bindtap="onPlayAgain">再来一局</button>
+    <button class="btn-secondary" bindtap="onBackHome">返回首页</button>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+﻿.card {
+  width: 100rpx; height: 140rpx; border-radius: 10rpx;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s;
+}
+.face-up { background: #fff; border: 2rpx solid #ddd; }
+.face-down { background: linear-gradient(135deg, #2c1810, #4a2c1a); border: 2rpx solid #5a3a20; }
+.card-content { text-align: center; }
+.card-rank { font-size: 36rpx; font-weight: bold; display: block; }
+.card-suit { font-size: 28rpx; display: block; }
+.card-back { text-align: center; }
+.back-icon { font-size: 48rpx; }

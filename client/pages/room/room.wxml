@@ -1,0 +1,18 @@
+﻿<view class="container">
+  <view class="room-header">
+    <text class="room-code">房间号：{{roomId}}</text>
+    <text class="player-count">{{players.length}}/{{maxPlayers}} 人</text>
+  </view>
+  <view class="player-list">
+    <view class="player-item" wx:for="{{players}}" wx:key="id">
+      <text class="player-name">{{item.nickname}}</text>
+      <text class="player-status {{item.isReady ? 'ready' : ''}}">{{item.isReady ? '已准备' : '未准备'}}</text>
+      <text class="player-host" wx:if="{{item.id === hostId}}">房主</text>
+    </view>
+  </view>
+  <view class="room-actions">
+    <button class="btn-primary" bindtap="onToggleReady">{{isReady ? '取消准备' : '准备'}}</button>
+    <button class="btn-danger" wx:if="{{isHost}}" bindtap="onStartGame" disabled="{{!allReady}}">开始游戏</button>
+    <button class="btn-secondary" bindtap="onLeaveRoom">离开房间</button>
+  </view>
+</view>

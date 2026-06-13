@@ -1,0 +1,16 @@
+﻿<view class="panel {{show ? 'show' : ''}}">
+  <view class="phase-indicator"><text class="phase-text">{{phaseText}}</text></view>
+  <view class="actions-row" wx:if="{{isMyTurn}}">
+    <block wx:if="{{gamePhase === 'play'}}">
+      <button class="action-btn play" bindtap="onPlay">出牌</button>
+    </block>
+    <block wx:if="{{gamePhase === 'challenge'}}">
+      <button class="action-btn challenge" bindtap="onChallenge">质疑</button>
+      <button class="action-btn follow" bindtap="onFollow" disabled="{{!canFollow}}">跟牌</button>
+      <button class="action-btn pass" bindtap="onPass">过</button>
+    </block>
+  </view>
+  <view class="waiting" wx:else>
+    <text>等待 {{currentPlayerName}} 操作...</text>
+  </view>
+</view>

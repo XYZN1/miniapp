@@ -1,0 +1,3 @@
+﻿<view class="countdown {{urgent ? 'urgent' : ''}}">
+  <text class="countdown-text">{{seconds}}</text>
+</view>

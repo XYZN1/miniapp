@@ -1,0 +1,23 @@
+﻿{
+  "pages": [
+    "pages/index/index",
+    "pages/room/room",
+    "pages/game/game",
+    "pages/result/result",
+    "pages/rules/rules"
+  ],
+  "window": {
+    "navigationBarTitleText": "骗子酒馆",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#2c1810",
+    "backgroundColor": "#1a0e0a"
+  },
+  "usingComponents": {
+    "card": "/components/card/card",
+    "player-seat": "/components/player-seat/player-seat",
+    "countdown": "/components/countdown/countdown",
+    "action-panel": "/components/action-panel/action-panel"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

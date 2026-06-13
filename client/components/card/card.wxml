@@ -1,0 +1,9 @@
+﻿<view class="card {{faceUp ? 'face-up' : 'face-down'}}">
+  <view wx:if="{{faceUp}}" class="card-content">
+    <text class="card-rank" style="color: {{color}}">{{rank}}</text>
+    <text class="card-suit" style="color: {{color}}">{{suitSymbol}}</text>
+  </view>
+  <view wx:else class="card-back">
+    <text class="back-icon">?</text>
+  </view>
+</view>

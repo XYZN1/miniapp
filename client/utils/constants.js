@@ -1,0 +1,10 @@
+﻿const RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+const SUITS = ["S", "H", "D", "C"];
+const SUIT_MAP = { S: "♠", H: "♥", D: "♦", C: "♣" };
+const SUIT_COLOR = { S: "#333", H: "#c0392b", D: "#c0392b", C: "#333" };
+const MAX_PLAYERS = 6;
+const MAX_CARDS_PER_PLAY = 4;
+const DEFAULT_LIVES = 5;
+const DEFAULT_TIMEOUT = 15;
+const GAME_STATUS = { WAITING: "waiting", PLAYING: "playing", FINISHED: "finished" };
+module.exports = { RANKS, SUITS, SUIT_MAP, SUIT_COLOR, MAX_PLAYERS, MAX_CARDS_PER_PLAY, DEFAULT_LIVES, DEFAULT_TIMEOUT, GAME_STATUS };

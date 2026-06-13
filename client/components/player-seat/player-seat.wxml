@@ -1,0 +1,8 @@
+﻿<view class="seat {{isActive ? 'active' : ''}} {{isAlive ? '' : 'dead'}}">
+  <view class="avatar-circle"><text class="avatar-text">{{initial}}</text></view>
+  <text class="nickname">{{nickname}}</text>
+  <view class="lives">
+    <text wx:for="{{lifeHearts}}" wx:key="*this">{{item}}</text>
+  </view>
+  <text class="card-count">{{cardCount}} 张</text>
+</view>

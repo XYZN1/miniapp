@@ -1,0 +1,9 @@
+﻿.countdown {
+  width: 80rpx; height: 80rpx; border-radius: 50%;
+  border: 4rpx solid #c9a84c;
+  display: flex; align-items: center; justify-content: center;
+}
+.countdown.urgent { border-color: #c0392b; animation: pulse 0.5s infinite; }
+.countdown-text { font-size: 36rpx; font-weight: bold; color: #c9a84c; }
+.countdown.urgent .countdown-text { color: #c0392b; }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
