@@ -1,4 +1,4 @@
-﻿const http = require("http");
+const http = require("http");
 const { WebSocketServer } = require("ws");
 const { v4: uuidv4 } = require("uuid");
 const RoomManager = require("./room/manager");

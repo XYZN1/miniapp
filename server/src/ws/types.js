@@ -1,4 +1,4 @@
-﻿module.exports = {
+module.exports = {
   CREATE_ROOM: "CREATE_ROOM",
   JOIN_ROOM: "JOIN_ROOM",
   LEAVE_ROOM: "LEAVE_ROOM",

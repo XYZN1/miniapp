@@ -1,4 +1,4 @@
-﻿const app = getApp();
+const app = getApp();
 function connect(url) {
   const ws = wx.connectSocket({ url, timeout: 5000 });
   app.globalData.ws = ws;

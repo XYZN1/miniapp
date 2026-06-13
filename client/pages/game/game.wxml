@@ -1,4 +1,4 @@
-﻿<view class="game-container">
+<view class="game-container">
   <view class="opponents-area">
     <player-seat
       wx:for="{{opponents}}" wx:key="id"

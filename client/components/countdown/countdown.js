@@ -1,4 +1,4 @@
-﻿let timer = null;
+let timer = null;
 Component({
   properties: {
     seconds: { type: Number, value: 15 },

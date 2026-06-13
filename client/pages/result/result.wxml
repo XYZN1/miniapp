@@ -1,4 +1,4 @@
-﻿<view class="container">
+<view class="container">
   <view class="winner-section">
     <text class="trophy">🏆</text>
     <text class="winner-title">本局胜者</text>

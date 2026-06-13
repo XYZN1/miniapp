@@ -1,4 +1,4 @@
-﻿<view class="container">
+<view class="container">
   <view class="room-header">
     <text class="room-code">房间号：{{roomId}}</text>
     <text class="player-count">{{players.length}}/{{maxPlayers}} 人</text>

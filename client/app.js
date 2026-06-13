@@ -1,4 +1,4 @@
-﻿App({
+App({
   globalData: {
     ws: null,
     clientId: null,

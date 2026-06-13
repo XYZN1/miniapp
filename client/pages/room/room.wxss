@@ -1,4 +1,4 @@
-﻿.container { padding: 30rpx; min-height: 100vh; display: flex; flex-direction: column; }
+.container { padding: 30rpx; min-height: 100vh; display: flex; flex-direction: column; }
 .room-header {
   display: flex; justify-content: space-between; align-items: center;
   padding: 20rpx; background: rgba(255,255,255,0.05);

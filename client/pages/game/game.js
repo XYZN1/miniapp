@@ -1,4 +1,4 @@
-﻿const ws = require("../../utils/ws");
+const ws = require("../../utils/ws");
 const app = getApp();
 
 Page({

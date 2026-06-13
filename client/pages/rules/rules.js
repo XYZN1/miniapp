@@ -1,1 +1,1 @@
-﻿Page({ data: {} });
+Page({ data: {} });

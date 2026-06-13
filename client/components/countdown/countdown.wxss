@@ -1,4 +1,4 @@
-﻿.countdown {
+.countdown {
   width: 80rpx; height: 80rpx; border-radius: 50%;
   border: 4rpx solid #c9a84c;
   display: flex; align-items: center; justify-content: center;

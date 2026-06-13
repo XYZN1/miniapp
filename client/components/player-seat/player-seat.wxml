@@ -1,4 +1,4 @@
-﻿<view class="seat {{isActive ? 'active' : ''}} {{isAlive ? '' : 'dead'}}">
+<view class="seat {{isActive ? 'active' : ''}} {{isAlive ? '' : 'dead'}}">
   <view class="avatar-circle"><text class="avatar-text">{{initial}}</text></view>
   <text class="nickname">{{nickname}}</text>
   <view class="lives">

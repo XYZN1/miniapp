@@ -1,4 +1,4 @@
-﻿Component({
+Component({
   properties: {
     isMyTurn: { type: Boolean, value: false },
     gamePhase: { type: String, value: "play" },

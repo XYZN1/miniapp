@@ -1,4 +1,4 @@
-﻿const { RANK_ORDER } = require("./deck");
+const { RANK_ORDER } = require("./deck");
 
 function validatePlay(cardIds, cards, declaredRank) {
   if (cardIds.length < 1 || cardIds.length > 4) return { valid: false, reason: "每次出牌 1-4 张" };

@@ -1,4 +1,4 @@
-﻿.panel {
+.panel {
   position: fixed; bottom: 0; left: 0; right: 0;
   background: rgba(26,14,10,0.95);
   border-top: 2rpx solid #5a4a3a;

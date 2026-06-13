@@ -1,4 +1,4 @@
-﻿const Room = require("./room");
+const Room = require("./room");
 class RoomManager {
   constructor() {
     this.rooms = new Map();

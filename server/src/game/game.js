@@ -1,4 +1,4 @@
-﻿const { createDeck, deal } = require("./deck");
+const { createDeck, deal } = require("./deck");
 
 class Game {
   constructor(pids) {

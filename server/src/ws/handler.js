@@ -1,4 +1,4 @@
-﻿const T = require("./types");
+const T = require("./types");
 
 class WsHandler {
   constructor(mgr) { this.mgr = mgr; }

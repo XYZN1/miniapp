@@ -1,4 +1,4 @@
-﻿Component({
+Component({
   properties: {
     nickname: { type: String, value: "" },
     lives: { type: Number, value: 5 },

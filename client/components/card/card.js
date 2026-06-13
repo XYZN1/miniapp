@@ -1,4 +1,4 @@
-﻿Component({
+Component({
   properties: {
     cardId: { type: String, value: "" },
     faceUp: { type: Boolean, value: false },

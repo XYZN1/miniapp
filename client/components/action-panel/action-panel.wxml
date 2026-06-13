@@ -1,4 +1,4 @@
-﻿<view class="panel {{show ? 'show' : ''}}">
+<view class="panel {{show ? 'show' : ''}}">
   <view class="phase-indicator"><text class="phase-text">{{phaseText}}</text></view>
   <view class="actions-row" wx:if="{{isMyTurn}}">
     <block wx:if="{{gamePhase === 'play'}}">

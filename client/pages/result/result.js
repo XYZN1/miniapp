@@ -1,4 +1,4 @@
-﻿Page({
+Page({
   data: { winner: "", players: [] },
   onLoad(options) {
     try {
