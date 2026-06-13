@@ -1,4 +1,4 @@
-const http = require("http");
+﻿const http = require("http");
 const { WebSocketServer } = require("ws");
 const { v4: uuidv4 } = require("uuid");
 const RoomManager = require("./room/manager");
@@ -29,7 +29,7 @@ wss.on("connection", (ws, req) => {
     } catch (e) {
       var preview = "";
       if (typeof raw === "string") { preview = raw.substring(0, 200); }
-      else if (Buffer.isBuffer(raw)) { preview = "HEX:" + raw.toString("hex").substring(0, 400) + "|STR:" + raw.toString("utf-8").substring(0, 100); }
+      else if (Buffer.isBuffer(raw)) { preview = "HEX:" + Buffer.from(raw).toString("hex").substring(0, 400) + "|STR:" + Buffer.from(raw).toString("utf-8").substring(0, 100); }
       else { preview = String(raw).substring(0, 200); }
       console.error("[ws] parse error:", e.message);
       console.error("[ws] raw data:", preview);
