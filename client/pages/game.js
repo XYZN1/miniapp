@@ -68,10 +68,43 @@ Page({
     this.setData({
       targetRank: p.targetRank, currentPlayerId: p.currentPlayerId,
       centralPileCount: p.centralPileCount, roundNumber: (p.roundNumber || 0) + 1,
+      roundHistory: (p.roundHistory || []).map(function(e) {
+        return {
+          playerId: e.playerId,
+          cardIds: e.cardIds.slice(),
+          isMine: e.playerId === app.globalData.clientId
+        };
+      }),
       handCards: (me ? me.handCards || [] : []).map(function(c) {
         return typeof c === "string" ? { id: c, selected: false } : { id: c.id, suit: c.suit, rank: c.rank, selected: false };
       }),
-      opponents: opponents,
+      myPlayedCards: (function() {
+        var myId = app.globalData.clientId;
+        var result = [];
+        var entries = (p.roundHistory || []).filter(function(e) { return e.playerId === myId; });
+        for (var ei = 0; ei < entries.length; ei++) {
+          for (var ci = 0; ci < entries[ei].cardIds.length; ci++) {
+            result.push({ cardId: entries[ei].cardIds[ci], faceUp: true });
+          }
+        }
+        return result;
+      })(),
+            opponents: opponents.map(function(o) {
+        var myId = app.globalData.clientId;
+        // Find cards this opponent played in roundHistory
+        var played = (p.roundHistory || []).filter(function(e) { return e.playerId === o.id; });
+        var playedCards = [];
+        for (var pi = 0; pi < played.length; pi++) {
+          for (var ci = 0; ci < played[pi].cardIds.length; ci++) {
+            playedCards.push({
+              cardId: played[pi].cardIds[ci],
+              faceUp: o.id === myId
+            });
+          }
+        }
+        o.playedCards = playedCards;
+        return o;
+      }),
       isMyTurn: p.currentPlayerId === app.globalData.clientId,
       countdownRunning: p.currentPlayerId === app.globalData.clientId && !this.data.showResult,
       gamePhase: this._phase(p),

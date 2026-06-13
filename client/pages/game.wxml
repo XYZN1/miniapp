@@ -3,7 +3,7 @@
   <view class="top-bar">
     <view class="top-left">
       <text class="round-info">第 {{roundNumber}} 轮</text>
-      <countdown seconds="{{countdownSeconds}}" running="{{countdownRunning}}" bind:timeout="onTimeout"></countdown>
+      <countdown wx:if="{{countdownRunning}}" seconds="{{countdownSeconds}}" running="{{countdownRunning}}" bind:timeout="onTimeout"></countdown>
     </view>
     <view class="target-rank">
       <text class="target-label">目标点数</text>
@@ -28,6 +28,16 @@
       <view class="table-center">
         <text class="center-icon">🃏</text>
         <text class="center-label">{{centralPileCount > 0 ? '已出 ' + centralPileCount + ' 张' : '等待出牌'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 已出牌区域 -->
+  <view class="my-played-area" wx:if="{{myPlayedCards.length > 0}}">
+    <text class="my-played-label">我出的牌</text>
+    <view class="my-played-cards">
+      <view class="my-played-card" wx:for="{{myPlayedCards}}" wx:key="cardId">
+        <card cardId="{{item.cardId}}" faceUp="{{true}}"></card>
       </view>
     </view>
   </view>

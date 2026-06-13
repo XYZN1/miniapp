@@ -35,6 +35,9 @@
   display: flex; justify-content: space-around;
   padding: 16rpx 16rpx 0;
 }
+.opponent-group { display: flex; flex-direction: column; align-items: center; gap: 6rpx; }
+.played-cards { display: flex; gap: 4rpx; }
+.played-card { width: 50rpx; height: 70rpx; }
 .table-center {
   flex: 1; display: flex; flex-direction: column;
   align-items: center; justify-content: center;
@@ -43,6 +46,13 @@
 .center-label { font-size: 24rpx; color: rgba(232,213,183,0.6); }
 
 /* 手牌区 */
+.my-played-area {
+  padding: 8rpx 20rpx;
+  background: rgba(0,0,0,0.15);
+}
+.my-played-label { font-size: 20rpx; color: #8b7355; display: block; margin-bottom: 4rpx; text-align: center; }
+.my-played-cards { display: flex; justify-content: center; gap: 4rpx; }
+.my-played-card { width: 56rpx; height: 78rpx; }
 .hand-area {
   padding: 10rpx 0 220rpx;
   background: linear-gradient(0deg, #2c1810, transparent);
