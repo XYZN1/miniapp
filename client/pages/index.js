@@ -19,7 +19,7 @@ Page({
   onGoRules() { wx.navigateTo({ url: "/pages/rules" }); },
   onWsMessage(msg) {
     if (msg.type === "CONNECTED") app.globalData.clientId = msg.payload.clientId;
-    if (msg.type === "ROOM_UPDATE") { wx.hideLoading(); app.globalData.roomId = msg.payload.roomId; wx.navigateTo({ url: "/pages/room" }); }
+    if (msg.type === "ROOM_UPDATE") { wx.hideLoading(); app.globalData.currentRoom = msg; app.globalData.roomId = msg.payload.roomId; wx.navigateTo({ url: "/pages/room" }); }
     if (msg.type === "ERROR") { wx.hideLoading(); wx.showToast({ title: msg.payload.message, icon: "none" }); }
   },
 });
