@@ -18,5 +18,5 @@
 .action-btn.challenge { background: linear-gradient(135deg, #c0392b, #96281b); color: #fff; }
 .action-btn.follow { background: linear-gradient(135deg, #27ae60, #1e8449); color: #fff; }
 .action-btn.pass { background: rgba(255,255,255,0.1); color: #e8d5b7; }
-.action-btn[disabled] { opacity: 0.4; }
+.action-btn.disabled { opacity: 0.4; }
 .waiting { text-align: center; font-size: 28rpx; color: #8b7355; }
