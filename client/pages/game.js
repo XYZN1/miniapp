@@ -7,7 +7,7 @@ Page({
     handCards: [], opponents: [], selectedCards: [], isMyTurn: false,
     gamePhase: "waiting", currentPlayerName: "",
     showResult: false, resultIcon: "", resultTitle: "", resultDesc: "",
-    countdownSeconds: 15, countdownRunning: false,
+    countdownCurrent: 15, countdownRunning: false, countdownUrgent: false,
   },
 
   onLoad: function() {
@@ -43,20 +43,36 @@ Page({
     }
   },
 
+  _timerId: null,
+
   _startTimer: function() {
-    this.setData({ countdownSeconds: 15, countdownRunning: true });
+    this._stopTimer();
+    var that = this;
+    that.setData({ countdownCurrent: 15, countdownRunning: true, countdownUrgent: false });
+    that._timerId = setInterval(function() {
+      var next = that.data.countdownCurrent - 1;
+      if (next <= 0) {
+        that._stopTimer();
+        that.onTimeout();
+        return;
+      }
+      that.setData({ countdownCurrent: Math.max(next, 0), countdownUrgent: next <= 5 });
+    }, 1000);
   },
 
   _stopTimer: function() {
-    this.setData({ countdownRunning: false });
+    if (this._timerId) {
+      clearInterval(this._timerId);
+      this._timerId = null;
+    }
+    this.setData({ countdownRunning: false, countdownUrgent: false });
   },
 
   onTimeout: function() {
-    this.setData({ countdownRunning: false });
-    if (this.data.isMyTurn) {
-      wx.showToast({ title: "时间到，自动过", icon: "none" });
-      ws.send("PASS");
-    }
+    this.setData({ countdownRunning: false, countdownUrgent: false });
+    wx.vibrateShort({ type: "heavy" });
+    this.setData({ countdownCurrent: 0 });
+    wx.showToast({ title: "时间到！请操作", icon: "none" });
   },
 
     _processGameState: function(msg) {

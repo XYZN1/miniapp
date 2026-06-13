@@ -3,7 +3,7 @@
   <view class="top-bar">
     <view class="top-left">
       <text class="round-info">第 {{roundNumber}} 轮</text>
-      <countdown wx:if="{{countdownRunning}}" seconds="{{countdownSeconds}}" running="{{countdownRunning}}" bind:timeout="onTimeout"></countdown>
+      <view class="countdown-self {{countdownUrgent ? "urgent" : ""}}" wx:if="{{countdownRunning}}">{{countdownCurrent}}</view>
     </view>
     <view class="target-rank">
       <text class="target-label">目标点数</text>
