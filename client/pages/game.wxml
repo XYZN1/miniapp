@@ -1,9 +1,9 @@
-<view class="game-container">
+﻿<view class="game-container">
   <!-- 顶部信息栏 -->
   <view class="top-bar">
     <view class="top-left">
       <text class="round-info">第 {{roundNumber}} 轮</text>
-      <view class="countdown-self {{countdownUrgent ? "urgent" : ""}}" wx:if="{{countdownRunning}}">{{countdownCurrent}}</view>
+      <view class="countdown-self {{countdownUrgent ? 'urgent' : ''}}" wx:if="{{countdownRunning}}">{{countdownCurrent}}</view>
     </view>
     <view class="target-rank">
       <text class="target-label">目标点数</text>

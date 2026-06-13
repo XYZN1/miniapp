@@ -119,6 +119,7 @@ Page({
           }
         }
         o.playedCards = playedCards;
+        o.playedCardCount = played.reduce(function(sum, e) { return sum + e.cardIds.length; }, 0);
         return o;
       }),
       isMyTurn: p.currentPlayerId === app.globalData.clientId,
